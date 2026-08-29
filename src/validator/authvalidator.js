@@ -36,3 +36,12 @@ export const registerValidator = [
     .withMessage("Password must be at least 6 characters"),
     validate
 ];
+export const loginvalidator = [
+    body("email")
+    .trim()
+    .notEmpty().withMessage("Email is required")
+    .isEmail().withMessage("please provide valid email"),
+    body("password")
+    .notEmpty().withMessage("password is required"),
+    validate
+];

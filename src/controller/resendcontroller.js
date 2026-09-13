@@ -1,25 +1,20 @@
 import { sendResendMail } from "../services/resendmail.js";
-
 export async function sendResendEmail(req, res) {
     try {
         const { to, subject, html, text, from } = req.body;
-
         if (!to || !subject) {
             return res.status(400).json({
                 success: false,
                 message: "Missing required fields: 'to' and 'subject' are required."
             });
         }
-
         if (!html && !text) {
             return res.status(400).json({
                 success: false,
                 message: "Email body is required: provide either 'html' or 'text'."
             });
         }
-
         const result = await sendResendMail({ to, subject, html, text, from });
-
         if (!result.success) {
             return res.status(500).json({
                 success: false,
@@ -27,7 +22,6 @@ export async function sendResendEmail(req, res) {
                 error: result.error
             });
         }
-
         return res.status(200).json({
             success: true,
             message: "Email sent successfully via Resend.",
@@ -42,6 +36,5 @@ export async function sendResendEmail(req, res) {
         });
     }
 }
-
 export const resendMailController = sendResendEmail;
 export default sendResendEmail;

@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authrouter from "./routes/authrouter.js";
 import resendrouter from "./routes/resendrouter.js";
+import chatrouter from './routes/chatrouter.js';
 
 const app = express();
 
@@ -15,4 +16,7 @@ connectDB();
 app.use("/api/auth", authrouter);
 app.use("/api/resend", resendrouter);
 
-export default app;
+
+app.use('/api/chat', chatrouter)
+
+export default app;

@@ -11,5 +11,4 @@ router.get('/verify-email', verifyEmail)
 router.post('/login', loginvalidator, login)
 router.get('/getme', authuser, getme)
 
-
 export default router;
